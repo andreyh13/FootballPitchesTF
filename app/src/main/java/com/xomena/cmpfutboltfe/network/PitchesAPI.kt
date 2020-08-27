@@ -10,7 +10,7 @@ class PitchesAPI @Inject constructor(
     private val client: OkHttpClient,
     private val requestBuilder: HttpUrl.Builder?
 ) {
-    fun getData() {
+    fun getData(): String {
         val url: String = requestBuilder?.build().toString()
         val request = Request.Builder()
             .url(url)
@@ -21,6 +21,7 @@ class PitchesAPI @Inject constructor(
 
             //TODO
             //println(response.body!!.string())
+            return response.body!!.string()
         }
     }
 }

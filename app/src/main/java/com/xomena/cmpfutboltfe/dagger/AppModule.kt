@@ -16,5 +16,5 @@ class AppModule(private val app: PitchesApplication) {
 
     @Provides
     @Singleton
-    fun providePitches(api: PitchesAPI) = Pitches(api)
+    fun providePitches(api: PitchesAPI) = Pitches(api, provideContext())
 }
