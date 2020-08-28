@@ -2,4 +2,5 @@
     <string name="app_name">Football Pitches Tenerife</string>
     <string name="tab_text_1">Select a county</string>
     <string name="tab_text_2">Map</string>
+    <string name="noData">There is no data available at the moment. Please try later.</string>
 </resources>
