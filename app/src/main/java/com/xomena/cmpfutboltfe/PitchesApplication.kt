@@ -8,11 +8,16 @@ import com.xomena.cmpfutboltfe.dagger.AppModule
 import com.xomena.cmpfutboltfe.dagger.DaggerAppComponent
 import com.xomena.cmpfutboltfe.dagger.NetworkModule
 import com.xomena.cmpfutboltfe.model.Pitches
+import com.xomena.cmpfutboltfe.states.PitchesAppState
+import com.xomena.cmpfutboltfe.states.States
 import javax.inject.Inject
 
 class PitchesApplication: Application {
     @Inject lateinit var pitches: Pitches
     @Inject lateinit var context: Context
+    @Inject lateinit var states: States
+
+    lateinit var currentState: PitchesAppState
 
     companion object {
         const val TAG = "FootballPitchesTF"
@@ -29,6 +34,15 @@ class PitchesApplication: Application {
             .networkModule(NetworkModule(this))
             .build()
             .inject(this)
+        setState(states.splashView)
         pitches.getData()
+    }
+
+    fun getState(): PitchesAppState {
+        return currentState
+    }
+
+    fun setState(state: PitchesAppState) {
+        currentState = state
     }
 }
