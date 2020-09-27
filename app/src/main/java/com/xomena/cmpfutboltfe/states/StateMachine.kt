@@ -33,6 +33,7 @@ class SplashView(): PitchesAppState {
 class CountiesView(): PitchesAppState {
     override fun consumeAction(action: Action, states: States): PitchesAppState {
         return when(action) {
+            is Action.DataLoaded -> this
             is Action.CountySelected -> states.pitchesListView
             else -> throw IllegalStateException("Invalid action $action passed to state $this")
         }
