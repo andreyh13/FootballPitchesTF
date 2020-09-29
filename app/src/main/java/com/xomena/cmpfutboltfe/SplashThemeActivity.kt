@@ -4,12 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.xomena.cmpfutboltfe.states.Action
 
-class SplashThemeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_theme)
-    }
-
+class SplashThemeActivity : AppCompatActivity(R.layout.activity_splash_theme) {
     override fun onStart() {
         super.onStart()
         checkLoadedState()

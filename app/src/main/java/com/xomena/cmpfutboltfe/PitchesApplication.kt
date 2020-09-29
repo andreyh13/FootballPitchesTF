@@ -85,7 +85,7 @@ class PitchesApplication: Application {
         currentState = state
     }
 
-    fun transitToNextState(action: Action, context: Context) {
+    fun transitToNextState(action: Action, context: Context = this) {
         this.setState(
             currentState.consumeAction(
                 action,
