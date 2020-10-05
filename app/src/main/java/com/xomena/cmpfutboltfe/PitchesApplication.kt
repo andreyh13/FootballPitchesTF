@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.xomena.cmpfutboltfe.dagger.AppModule
@@ -19,7 +18,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class PitchesApplication: Application {
+class PitchesApplication() : Application() {
     @Inject lateinit var pitches: Pitches
     @Inject lateinit var context: Context
     @Inject lateinit var states: States
@@ -33,12 +32,9 @@ class PitchesApplication: Application {
         const val TAG = "FootballPitchesTF"
     }
 
-    constructor(): super() {
-    }
-
     override fun onCreate() {
         super.onCreate()
-        Log.i(TAG, "Initializing football pitches app");
+        Log.i(TAG, "Initializing football pitches app")
         DaggerAppComponent.builder()
             .appModule(AppModule(this))
             .networkModule(NetworkModule(this))
@@ -51,7 +47,7 @@ class PitchesApplication: Application {
                         transitToPreviousState()
                     }
                 }
-                (activity as AppCompatActivity).getOnBackPressedDispatcher().addCallback(activity, callback)
+                (activity as AppCompatActivity).onBackPressedDispatcher.addCallback(activity, callback)
             }
             override fun onActivityStarted(activity: Activity) {
                 mActivity = activity
@@ -67,7 +63,8 @@ class PitchesApplication: Application {
             }
 
             override fun onActivityStopped(activity: Activity) {}
-            override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle?) {}
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+
             override fun onActivityDestroyed(activity: Activity) {}
         })
         setState(states.splashView)
