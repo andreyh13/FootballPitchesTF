@@ -3,13 +3,15 @@ package com.xomena.cmpfutboltfe.states
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.xomena.cmpfutboltfe.MainActivity
 import com.xomena.cmpfutboltfe.R
+import com.xomena.cmpfutboltfe.ui.composable.CountiesViewsTabsCompose
 
 class CountiesView(): PitchesAppState {
     override fun consumeAction(action: Action, states: States): PitchesAppState {
@@ -28,16 +30,18 @@ class CountiesView(): PitchesAppState {
     @Composable
     override fun stateCompose(context: Context) {
         ConstraintLayout {
-            val (topBar, text) = createRefs()
+            val (topBar, content) = createRefs()
             TopAppBar(
                 modifier = Modifier.constrainAs(topBar){
                     top.linkTo(parent.top)
                 },
                 title = { Text(text = context.getString(R.string.app_name)) }
             )
-            Text(text = "Hello World!", Modifier.constrainAs(text) {
-                top.linkTo(topBar.bottom, margin = 16.dp)
-            })
+            Column(Modifier.fillMaxWidth().constrainAs(content) {
+                top.linkTo(topBar.bottom)
+            }) {
+                CountiesViewsTabsCompose()
+            }
         }
     }
 }
