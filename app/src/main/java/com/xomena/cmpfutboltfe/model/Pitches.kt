@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 
 class Pitches @Inject constructor(private val api: PitchesAPI, private val context: Context) {
-    private val items: MutableList<Pitch>  = ArrayList<Pitch>()
+    private val items: MutableList<Pitch>  = ArrayList()
 
     fun getData() {
         Single.fromCallable {
@@ -28,13 +28,13 @@ class Pitches @Inject constructor(private val api: PitchesAPI, private val conte
             .subscribe({ text ->
                 val json: String = text.substring(0, text.length - 1).substring(2)
 
-                val js_arr: JSONArray
+                val jsArr: JSONArray
                 try {
-                    js_arr = JSONArray(json)
-                    for (i in 1 until js_arr.length()) {
-                        if (!js_arr.isNull(i)) {
-                            val js_val = js_arr.getJSONArray(i)
-                            items.add(Pitch(js_val))
+                    jsArr = JSONArray(json)
+                    for (i in 1 until jsArr.length()) {
+                        if (!jsArr.isNull(i)) {
+                            val jsVal = jsArr.getJSONArray(i)
+                            items.add(Pitch(jsVal))
                         }
                     }
                 } catch (ex: JSONException) {

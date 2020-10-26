@@ -2,13 +2,14 @@ package com.xomena.cmpfutboltfe.states
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import com.xomena.cmpfutboltfe.model.PitchesViewModel
 import javax.inject.Inject
 
 interface PitchesAppState {
     fun consumeAction(action: Action, states: States): PitchesAppState
     fun renderViewState(context: Context)
     @Composable
-    fun stateCompose(context: Context)
+    fun stateCompose(context: Context, model: PitchesViewModel)
 }
 
 sealed class Action {

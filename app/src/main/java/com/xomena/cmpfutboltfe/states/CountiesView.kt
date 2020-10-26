@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.xomena.cmpfutboltfe.MainActivity
 import com.xomena.cmpfutboltfe.R
+import com.xomena.cmpfutboltfe.model.PitchesViewModel
 import com.xomena.cmpfutboltfe.ui.composable.CountiesViewsTabsCompose
 
 class CountiesView(): PitchesAppState {
@@ -28,7 +29,7 @@ class CountiesView(): PitchesAppState {
     }
 
     @Composable
-    override fun stateCompose(context: Context) {
+    override fun stateCompose(context: Context, model: PitchesViewModel) {
         ConstraintLayout {
             val (topBar, content) = createRefs()
             TopAppBar(
@@ -40,7 +41,7 @@ class CountiesView(): PitchesAppState {
             Column(Modifier.fillMaxWidth().constrainAs(content) {
                 top.linkTo(topBar.bottom)
             }) {
-                CountiesViewsTabsCompose()
+                CountiesViewsTabsCompose(model)
             }
         }
     }

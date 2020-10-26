@@ -103,6 +103,10 @@ class PitchesApplication() : Application() {
         return mActivity
     }
 
+    fun getActivityContext(): Context? {
+        return mActivity as Context
+    }
+
     fun isPitchesLoaded(): Boolean {
         if (this::pitches.isInitialized) {
             return pitches.getItems().isNotEmpty()
